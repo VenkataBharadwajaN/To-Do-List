@@ -1,0 +1,41 @@
+.pointer
+{
+    cursor: pointer;
+}
+
+.circle{
+    padding: 10px;
+    background-color:rgb(233, 222, 221);
+    border-radius: 50%;
+}
+
+.form-control{
+    box-shadow: none !important;
+}
+
+@media (max-width: 767.98px) { 
+    table
+    {
+        width: 100%;
+    }
+    img
+    {
+        width: 50%;
+    }
+    
+}
+
+@media (min-width: 768px) { 
+    table,.addTodo
+    {
+        width: 50%;
+    }
+    .addTodo
+    {
+        width: 75%;
+    }
+    img
+    {
+        width: 15%;
+    }
+}

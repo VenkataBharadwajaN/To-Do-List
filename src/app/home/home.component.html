@@ -1,0 +1,76 @@
+<div class="m-3">
+
+    <div class="text-center">
+
+        <img src="https://img.icons8.com/bubbles/300/000000/list.png" class="img-fluid">
+    
+    </div>
+
+    <form #ref="ngForm" (ngSubmit)=addTodo(ref)>
+
+        <div class="row mx-auto addTodo">
+    
+            <div class="col-10">
+    
+                <input type="text" class="form-control" name="todo" placeholder="Enter Your Todo ..." ngModel autocomplete="off" >
+    
+            </div>
+    
+            <div class="col-1">
+    
+                <button type="submit" class="btn btn-success"> <i class="fas fa-plus"></i> </button>
+    
+            </div>
+    
+        </div>
+    
+    </form>
+
+    <br>
+
+    <table class="table mx-auto">
+
+        <tbody>
+
+            <tr *ngFor="let todo of dataServiceObject.todoList;let idx=index" class="row">
+                
+                <td class="col-1" *ngIf="!todo.status"> <i class="far fa-circle pointer" (click)=updateTodo(idx)> </i> </td>
+                
+                <td class="col-1 text-success" *ngIf="todo.status"> <i class="fas fa-check-circle pointer" (click)=updateTodo(idx)></i> </td>
+                
+                <td class="col-6"  *ngIf="!editStatus || todo.id!=editObject.id" (dblclick)=editTodo(todo)>{{todo.todo}}</td>
+                
+                <td *ngIf="editStatus && todo.id==editObject.id" class="col-6"> 
+                    
+                    <input type="text" name="todoEdit" [(ngModel)]=editObject.todo class="w-100" (keyup.enter)="saveTodo()" (keyup.esc)="dontSaveTodo()" autofocus #myInput> 
+                    
+                    {{ myInput.focus() }} 
+                
+                </td>
+                
+
+                <td class="col-5"> 
+                    
+                    <i (click)=deleteTodo(idx) class="fas fa-trash pointer circle ms-2 text-danger" *ngIf="!editStatus || todo.id!=editObject.id"> </i>
+
+                    <i class="far fa-edit ms-2  pointer circle " (click)=editTodo(todo) *ngIf="!editStatus || todo.id!=editObject.id"></i>
+                
+                    <i class="far fa-save ms-2 pointer circle text-success" *ngIf="editStatus && todo.id==editObject.id" (click)=saveTodo()></i>
+                    
+                    <i class="fas fa-undo ms-2 pointer circle " *ngIf="editStatus && todo.id==editObject.id" (click)=dontSaveTodo()></i>
+  
+                </td>
+                
+          </tr>
+          
+        </tbody>
+
+    </table>
+
+    <div *ngIf="dataServiceObject.todoList.length==0" class="text-center">
+        
+        <p class="display-6">Ready To Go Add Your Tasks ...</p>
+
+    </div>
+
+</div>

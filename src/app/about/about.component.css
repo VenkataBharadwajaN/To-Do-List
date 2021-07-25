@@ -1,0 +1,17 @@
+@media (max-width: 767.98px) { 
+    img
+    {
+        width: 75%;
+        border-radius: 50%;
+        height: 75%;
+    }
+}
+
+@media (min-width: 768px) {
+    img
+    {
+        width: 20%;
+        border-radius: 50%;
+        height: 20%;
+    }
+}
